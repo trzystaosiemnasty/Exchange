@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css"
+          th:href="@{/static/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"
+          th:href="@{/static/css/style.css}"/>
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/3ca797a767.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Edit account - Spring Online Exchange</title>
+</head>
+<body>
+    <form th:action="@{/edit}" th:object="${user}" method="post" class="login">
+        <h3 class="text-primary">Edit your account</h3>
+        <input type="hidden" class="form-control" placeholder="Id" th:field="*{id}"/>
+        <input type="hidden" class="form-control" placeholder="Username" th:field="*{username}"/>
+        <div class="login-field"><input type="password" class="form-control" placeholder="Password" th:field="*{password}"/></div>
+        <div class="login-field"><input type="text" class="form-control" placeholder="Budget (PLN)" th:field="*{availablePLN}"/></div>
+        <div class="login-field" th:each="portfolioItem,portfolioItemStat : *{portfolio}">
+            <input type="text" class="login-field form-control" th:field="*{portfolio[__${portfolioItemStat.index}__].key}" placeholder="Currency" />
+            <input type="text" class="login-field form-control" th:field="*{portfolio[__${portfolioItemStat.index}__].value}" placeholder="Amount" />
+        </div>
+        <input type="submit" name="addRowEdit" class="btn btn-default" value="Add currency" style="margin-bottom: 10px"/>
+        <div>
+            <input type="submit" value="Save" class="btn btn-primary"/>
+            <a th:href="@{/}" class="btn btn-default">Go back</a>
+        </div>
+        <div th:if="${param.error}">
+            <p class="lead">Invalid username and password.</p>
+        </div>
+    </form>
+</body>
+</html>

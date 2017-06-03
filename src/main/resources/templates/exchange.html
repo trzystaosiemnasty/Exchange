@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="app">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+          th:href="@{/static/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"
+          th:href="@{/static/css/style.css}"/>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-resource.min.js"></script>
+    <script src="https://cdn.rawgit.com/gdi2290/angular-websocket/v1.0.9/angular-websocket.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://use.fontawesome.com/3ca797a767.js"></script>
+    <script src="static/js/angular-prompt.min.js"></script>
+    <script src="static/js/app.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Spring Online Exchange</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h2 class="navbar-brand"><a th:href="@{/}" class="edit">Exchange</a></h2>
+            </div>
+            <span th:with="currentUser=${#httpServletRequest.userPrincipal?.name}">
+                <span th:if="${currentUser != null}">
+                    <form class="navbar-form navbar-right" role="search" th:action="@{/logout}" method="post">
+                        <ul class="nav navbar-nav">
+                        <li><a th:text="${'Logged in as ' + currentUser}" id="username">Logged in as sample_user</a></li>
+                        </ul>
+                        <div class="form-group">
+                        </div>
+                        <a th:href="@{/edit}" class="edit"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+                        <button type="submit" class="transparent"><i class="fa fa-power-off fa-2x" aria-hidden="true"></i></button>
+                    </form>
+                </span>
+            </span>
+        </div>
+    </nav>
+    <div data-ng-controller="ExchangeController as ctrl" class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-hover">
+                <h3 class="text-primary" style="margin-bottom: 5px; min-height: 40px">Currencies</h3>
+                <thead>
+                    <tr>
+                        <th>Currency</th>
+                        <th>Unit</th>
+                        <th>Value</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in ctrl.MyData.collection[0].Items" >
+                        <td>{{ item.Code }}</td>
+                        <td>{{ item.Unit }}</td>
+                        <td>{{ item.SellPrice }}</td>
+                        <td><button class="btn btn-default btn-action" data-ng-click="goBuy('' + item.Code)">Buy</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Exchange rate from {{ctrl.MyData.collection[0].PublicationDate}}</p>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped table-hover">
+                <h3 class="text-primary" style="margin-bottom: 5px; min-height: 40px">My wallet</h3>
+                <thead>
+                    <tr>
+                        <th>Currency</th>
+                        <th>Unit price</th>
+                        <th>Amount</th>
+                        <th>Value</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in ctrl.user.portfolio" >
+                        <td>{{ item.key }}</td>
+                        <td>{{ ctrl.user.prices[item.key] }}</td>
+                        <td>{{ item.value }}</td>
+                        <td>{{ item.value * ctrl.user.prices[item.key] }}</td>
+                        <td><button class="btn btn-default btn-action" data-ng-click="goSell('' + item.key)">Sell</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="lead">Available PLN: {{ctrl.user.availablePLN}}</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
