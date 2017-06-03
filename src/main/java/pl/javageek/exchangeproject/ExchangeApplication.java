@@ -1,6 +1,5 @@
 package pl.javageek.exchangeproject;
 
-import lombok.val;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +17,7 @@ public class ExchangeApplication {
     @Bean
     CommandLineRunner init(ExchangeRepository exchangeRepository) {
         return (evt) -> {
-            val exchange = exchangeRepository.saveAndFlush(new Exchange());
+            Exchange exchange = exchangeRepository.saveAndFlush(new Exchange());
             System.out.println(exchange);
         };
     }
