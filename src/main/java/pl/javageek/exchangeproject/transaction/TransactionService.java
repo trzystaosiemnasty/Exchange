@@ -1,14 +1,14 @@
-package pl.javageek.exchange.transaction;
+package pl.javageek.exchangeproject.transaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import pl.javageek.exchange.currency.CurrenciesDTO;
-import pl.javageek.exchange.currency.CurrencyDTO;
-import pl.javageek.exchange.ex.ExchangeService;
-import pl.javageek.exchange.user.User;
-import pl.javageek.exchange.user.UserService;
+import pl.javageek.exchangeproject.currency.CurrenciesDTO;
+import pl.javageek.exchangeproject.currency.CurrencyDTO;
+import pl.javageek.exchangeproject.exchange.ExchangeService;
+import pl.javageek.exchangeproject.user.User;
+import pl.javageek.exchangeproject.user.UserService;
 import lombok.val;
 
 import java.math.BigDecimal;

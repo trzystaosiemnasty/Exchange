@@ -1,4 +1,4 @@
-package pl.javageek.exchange.transaction;
+package pl.javageek.exchangeproject.transaction;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

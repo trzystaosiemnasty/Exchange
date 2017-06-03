@@ -1,4 +1,4 @@
-package pl.javageek.exchange.currency;
+package pl.javageek.exchangeproject.currency;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package pl.javageek.exchange.user;
+package pl.javageek.exchangeproject.user;
 
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;

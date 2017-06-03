@@ -1,4 +1,4 @@
-package pl.javageek.exchange.transaction;
+package pl.javageek.exchangeproject.transaction;
 
 import lombok.Data;
 

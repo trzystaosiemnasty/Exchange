@@ -1,4 +1,4 @@
-package pl.javageek.exchange.transaction;
+package pl.javageek.exchangeproject.transaction;
 
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import pl.javageek.exchange.currency.CurrenciesDTO;
-import pl.javageek.exchange.currency.CurrencyDTO;
-import pl.javageek.exchange.ex.Exchange;
-import pl.javageek.exchange.ex.ExchangeService;
-import pl.javageek.exchange.user.User;
-import pl.javageek.exchange.user.UserRepository;
+import pl.javageek.exchangeproject.currency.CurrenciesDTO;
+import pl.javageek.exchangeproject.currency.CurrencyDTO;
+import pl.javageek.exchangeproject.exchange.Exchange;
+import pl.javageek.exchangeproject.exchange.ExchangeService;
+import pl.javageek.exchangeproject.user.User;
+import pl.javageek.exchangeproject.user.UserRepository;
 
 import java.security.Principal;
 import java.util.stream.Collectors;

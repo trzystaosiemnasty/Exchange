@@ -1,5 +1,6 @@
-package pl.javageek.exchange.user;
+package pl.javageek.exchangeproject.user;
 
+import lombok.val;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -32,25 +33,25 @@ public class UserServiceTest {
 
     @Test
     public void registerNewUserAccount() throws Exception {
-        User passedUser = new User();
+        val passedUser = new User();
         passedUser.setUsername("a");
         passedUser.setPassword("a");
         when(userRepository.findByUsername("a")).thenReturn(Optional.empty());
-        User expectedUser = new User();
+        val expectedUser = new User();
         expectedUser.setId(1L);
         expectedUser.setUsername("a");
         expectedUser.setPassword("b");
         when(userRepository.saveAndFlush(passedUser)).thenReturn(expectedUser);
         when(passwordEncoder.encode("a")).thenReturn("b");
 
-        User newUser = service.registerNewUserAccount(passedUser);
+        val newUser = service.registerNewUserAccount(passedUser);
 
         assertThat(newUser.getId(), is(1L));
     }
 
     @Test(expected = UsernameExistsException.class)
     public void throwExceptionWhenUsernameExists() throws Exception {
-        User passedUser = new User();
+        val passedUser = new User();
         passedUser.setUsername("a");
         passedUser.setPassword("a");
         when(userRepository.findByUsername("a")).thenReturn(Optional.of(passedUser));
@@ -60,24 +61,23 @@ public class UserServiceTest {
 
     @Test
     public void returnsThatUserExists() throws Exception {
-        User existingUser = new User();
+        val existingUser = new User();
         existingUser.setUsername("a");
-        Optional<User> opt = Optional.of(existingUser);
+        val opt = Optional.of(existingUser);
         when(userRepository.findByUsername("a")).thenReturn(opt);
 
-        boolean userExists = service.usernameExist("a");
+        val userExists = service.usernameExist("a");
+
         verify(userRepository).findByUsername("a");
         assertTrue(userExists);
     }
 
     @Test
     public void returnsThatUserDoesntExist() throws Exception {
-        User existingUser = new User();
-        existingUser.setUsername("a");
-        Optional<User> opt = Optional.empty();
-        when(userRepository.findByUsername("a")).thenReturn(opt);
+        when(userRepository.findByUsername("a")).thenReturn(Optional.empty());
 
-        boolean userExists = service.usernameExist("a");
+        val userExists = service.usernameExist("a");
+
         verify(userRepository).findByUsername("a");
         assertFalse(userExists);
     }

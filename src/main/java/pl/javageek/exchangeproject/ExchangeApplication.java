@@ -1,12 +1,12 @@
-package pl.javageek.exchange;
+package pl.javageek.exchangeproject;
 
 import lombok.val;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import pl.javageek.exchange.ex.Exchange;
-import pl.javageek.exchange.ex.ExchangeRepository;
+import pl.javageek.exchangeproject.exchange.Exchange;
+import pl.javageek.exchangeproject.exchange.ExchangeRepository;
 
 @SpringBootApplication
 public class ExchangeApplication {

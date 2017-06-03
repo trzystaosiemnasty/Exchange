@@ -1,4 +1,4 @@
-package pl.javageek.exchange.config;
+package pl.javageek.exchangeproject.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

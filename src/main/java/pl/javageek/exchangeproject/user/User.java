@@ -1,4 +1,4 @@
-package pl.javageek.exchange.user;
+package pl.javageek.exchangeproject.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
